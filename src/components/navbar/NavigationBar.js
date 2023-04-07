@@ -90,7 +90,14 @@ function NavigationBar(props) {
         <Navbar.Brand className="mx-0" href="#home">
           <img src={logo} width="60" height="60" alt="Swap logo" />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          style={{
+            backgroundColor: "#1e2633",
+            borderRadius: "20px",
+            padding: "10px",
+          }}
+        />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav
             className="me-auto "

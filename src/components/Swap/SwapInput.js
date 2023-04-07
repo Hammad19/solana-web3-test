@@ -89,7 +89,7 @@ export default function SwapInput({
                 </div>
               </div>
             </div>
-            <div className="col-6 col-xl-7 col-lg-8">
+            <div className="col-6 col-sm-7 col-xl-7 col-lg-8">
               <input
                 className="col-12"
                 type="number input-data"
