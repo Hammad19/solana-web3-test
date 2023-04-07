@@ -9,6 +9,7 @@ import Songs from "./components/Songs/Songs";
 import Pool from "./components/Pool/Pool";
 import { Paths } from "./components/Constants/Menu";
 import React, { useEffect, useState } from "react";
+import Xswap from "./components/Xswap/Xswap";
 
 function App() {
   const [walletAddress, setWalletAddress] = useState(null);
@@ -51,7 +52,7 @@ function App() {
             /> */}
             <Route
               path="/xswap"
-              element={<Swap walletAddress={walletAddress} />}
+              element={<Xswap walletAddress={walletAddress} />}
             />
           </Routes>
         </div>
