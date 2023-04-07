@@ -52,7 +52,7 @@ export default function SwapInput({
               onClick={() => {
                 setModalShow(true);
               }}
-              className="col-6 col-sm-5 col-xl-4 col-lg-4">
+              className="col-6 col-sm-5 col-xl-5 col-lg-4">
               <div
                 style={{
                   backgroundColor: "transparent",
@@ -79,12 +79,17 @@ export default function SwapInput({
                   </p>
                 </div>
 
-                <div className=" my-1 col-5">
+                <div
+                  style={{
+                    //align left
+                    textAlign: "left",
+                  }}
+                  className="my-1 col-5">
                   <ChevronDown color={"#6b85ad"} size={25} />
                 </div>
               </div>
             </div>
-            <div className="col-6 col-xl-8 col-lg-8">
+            <div className="col-6 col-xl-7 col-lg-8">
               <input
                 className="col-12"
                 type="number input-data"
