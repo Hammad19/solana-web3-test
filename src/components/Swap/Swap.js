@@ -149,7 +149,7 @@ export default function Swap(props) {
     // center div with glassmorphism
     <div
       className="col-12 col-sm-8  col-md-6
-       col-lg-5 col-xl-3"
+       col-lg-6 col-xl-3"
       style={{
         background: "#131924",
         borderRadius: "16px",
