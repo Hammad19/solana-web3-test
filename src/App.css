@@ -12,6 +12,16 @@
   opacity: 1; /* Firefox */
 }
 
+#swapmodalinput-hover:hover {
+  background-color: #394353;
+}
+
+#swapmodalinput-hover {
+  background-color: #2b3647;
+ 
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -41,53 +51,30 @@
     transform: rotate(360deg);
   }
 }
-@media (max-width:600px) {
-  .search-song{
-       margin-left: 0px !important;
+
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+  #xswap {
+   
+    width: 48%;
   }
-  .song-box{
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  .song-box-size{
-    width: 100% !important;
-  }
-  .text-size{
-    font-size: small !important;
-  }
-  .circle-box{
-    width: 120px !important;
-    padding-right: 1rem !important;
+  #swap{
+    width: 48%;
   }
 }
-@media (min-width:601px) and (max-width:767px) {
-  .text-size{
-    font-size: small !important;
+
+@media only screen and (min-width: 1400px) and (max-width: 1800px) {
+  #xswap {
+   
+    width: 40%;
   }
-  .circle-box{
-    width: 120px !important;
-    padding-right: 1rem !important;
-  }
-}
-@media (min-width:768px) and (max-width:991px){
-  .text-size{
-    font-size: large !important;
-  }
-  .circle-box{
-    width: 200px !important;
-    padding-right: 1rem !important;
+  #swap{
+    width: 40%;
   }
 }
-@media (min-width:992px) and (max-width:1199px){
-  .text-size{
-    font-size: large !important;
-  }
-  .review-swap{
-    font-size: 23px !important;
-    width: 208px !important;
-    height: 44px !important;
-  }
-}
+
+
 
 
 
