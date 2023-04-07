@@ -73,10 +73,12 @@ export default function SwapInput({
                     }}
                   />
                 </div>
-                <div className="my-1 col-4">
-                  <p>
-                    <h5 className="text-light">{selectedToken.name}</h5>
-                  </p>
+                <div
+                  className="mx-1 my-1 col-3"
+                  style={{
+                    textAlign: "center",
+                  }}>
+                  <h5 className="text-light">{selectedToken.name}</h5>
                 </div>
 
                 <div
@@ -84,7 +86,7 @@ export default function SwapInput({
                     //align left
                     textAlign: "left",
                   }}
-                  className="my-1 col-5">
+                  className="mx-1 my-1 col-3">
                   <ChevronDown color={"#6b85ad"} size={25} />
                 </div>
               </div>
