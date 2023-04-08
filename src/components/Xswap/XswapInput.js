@@ -30,7 +30,11 @@ export default function XSwapInput({
             width: "90%",
             border: "1px solid #1e2633",
           }}>
-          <div className="row my-3">
+          <div
+            className="row my-3"
+            style={{
+              display: "flex",
+            }}>
             <div className="col-6 col-sm-7 col-xl-8 col-lg-8">
               <input
                 className="col-12"
@@ -58,39 +62,31 @@ export default function XSwapInput({
                 id="swapmodalinput-hover"
                 style={{
                   //backgroundColor: "#1e2633",
+                  display: "flex",
+                  justifyContent: "center",
                   borderRadius: "25px",
                   height: "50px",
                   marginRight: "0.1px",
                   marginTop: "10px",
                   paddingTop: "8px",
-                }}
-                className="row">
-                <div className="col-3">
-                  <img
-                    alt="coin"
-                    src={selectedToken.icon}
-                    style={{
-                      height: "35px",
-                      width: "35px",
-                    }}
-                  />
-                </div>
-                <div
-                  className="mx-1 my-1 col-4"
+                }}>
+                <img
+                  className="mx-1"
+                  alt="coin"
+                  src={selectedToken.icon}
                   style={{
-                    textAlign: "center",
-                  }}>
-                  <h5 className="text-light">{selectedToken.name}</h5>
-                </div>
-
-                <div
-                  style={{
-                    //align left
-                    textAlign: "right",
+                    height: "35px",
+                    width: "35px",
                   }}
-                  className="mx-1 my-1 col-3">
-                  <ChevronDown color={"#6b85ad"} size={25} />
-                </div>
+                />
+
+                <h5 className="mx-1 my-1 text-light">{selectedToken.name}</h5>
+
+                <ChevronDown
+                  className="mx-1 my-1 "
+                  color={"#6b85ad"}
+                  size={25}
+                />
               </div>
             </div>
             <h4
