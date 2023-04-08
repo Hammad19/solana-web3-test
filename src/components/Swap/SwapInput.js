@@ -55,40 +55,32 @@ export default function SwapInput({
               className="col-6 col-sm-5 col-xl-5 col-lg-4">
               <div
                 style={{
+                  display: "flex",
+
                   backgroundColor: "transparent",
                   borderRadius: "20px",
                   height: "40px",
                   marginRight: "0.1px",
                   marginTop: "10px",
                   paddingTop: "3px",
-                }}
-                className="row">
-                <div className="col-3">
-                  <img
-                    alt="coin"
-                    src={selectedToken.icon}
-                    style={{
-                      height: "35px",
-                      width: "35px",
-                    }}
-                  />
-                </div>
-                <div
-                  className="mx-1 my-1 col-3"
+                }}>
+                <img
+                  className="mx-1"
+                  alt="coin"
+                  src={selectedToken.icon}
                   style={{
-                    textAlign: "center",
-                  }}>
-                  <h5 className="text-light">{selectedToken.name}</h5>
-                </div>
-
-                <div
-                  style={{
-                    //align left
-                    textAlign: "left",
+                    height: "35px",
+                    width: "35px",
                   }}
-                  className="mx-1 my-1 col-3">
-                  <ChevronDown color={"#6b85ad"} size={25} />
-                </div>
+                />
+
+                <h5 className="text-light mx-1 my-1">{selectedToken.name}</h5>
+
+                <ChevronDown
+                  className="mx-1 my-1 "
+                  color={"#6b85ad"}
+                  size={25}
+                />
               </div>
             </div>
             <div className="col-6 col-sm-7 col-xl-7 col-lg-8">
