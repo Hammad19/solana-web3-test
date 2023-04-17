@@ -6,11 +6,14 @@ import { PinAngle } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
 function TokenModal(props) {
-  useEffect(() => {
-    setAllTokens(props.tokenDetails);
-  }, [props.tokenDetails]);
+  const [filteredTokens, setFilteredTokens] = React.useState(
+    props.tokenDetails
+  );
 
-  const [alltokens, setAllTokens] = React.useState(props.tokenDetails);
+  useEffect(() => {
+    setFilteredTokens(props.tokenDetails);
+  }, []);
+
   return (
     <Modal
       {...props}
@@ -22,8 +25,6 @@ function TokenModal(props) {
         style={{
           //glassmorphism with black background
           background: "#131823",
-          border: "0px solid rgba(255, 255, 255, 0.2)",
-          borderRadius: "20px",
 
           boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
           backdropFilter: "blur(4px)",
@@ -47,18 +48,30 @@ function TokenModal(props) {
               marginBottom: "10px",
             }}
             onChange={(e) => {
-              const search = e.target.value;
-              const filtered = props.tokenDetails.filter((token) => {
-                return token.name.toLowerCase().includes(search.toLowerCase());
+              //search in alltokens by string
+              let searchstring = e.target.value;
+              let filteredtokens = {};
+              Object.keys(props.tokenDetails).map((tokenaddress) => {
+                if (
+                  props.tokenDetails[tokenaddress].name
+                    .toLowerCase()
+                    .includes(searchstring.toLowerCase()) ||
+                  props.tokenDetails[tokenaddress].symbol
+                    .toLowerCase()
+                    .includes(searchstring.toLowerCase())
+                ) {
+                  filteredtokens[tokenaddress] =
+                    props.tokenDetails[tokenaddress];
+                }
               });
-              setAllTokens(filtered);
+              setFilteredTokens(filteredtokens);
             }}
           />
         </Card.Header>
         <Card.Body>
           <Table responsive hover scrollable>
             <tbody>
-              {alltokens.map((token) => {
+              {Object.keys(filteredTokens).map((tokenaddress) => {
                 return (
                   <tr
                     style={{
@@ -70,14 +83,14 @@ function TokenModal(props) {
                     onClick={
                       //set selected token
                       () => {
-                        props.setSelectedToken(token);
+                        props.setSelectedToken(filteredTokens[tokenaddress]);
                         props.onHide();
                       }
                     }>
                     <td className="text-white">
                       <div className="d-flex align-items-center">
                         <img
-                          src={token.icon}
+                          src={filteredTokens[tokenaddress]?.logoURI}
                           width="30"
                           height="30"
                           className="d-inline-block align-top"
@@ -89,7 +102,7 @@ function TokenModal(props) {
                               fontSize: "20px",
                             }}
                             className="mb-0 text-white">
-                            {token.name}
+                            {filteredTokens[tokenaddress].name}
                           </h5>
                         </div>
                       </div>

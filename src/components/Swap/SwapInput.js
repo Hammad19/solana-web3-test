@@ -67,14 +67,16 @@ export default function SwapInput({
                 <img
                   className="mx-1"
                   alt="coin"
-                  src={selectedToken.icon}
+                  src={selectedToken.logoURI}
                   style={{
                     height: "35px",
                     width: "35px",
                   }}
                 />
 
-                <h5 className="text-light mx-1 my-1">{selectedToken.name}</h5>
+                <h5 className="text-light mx-1 my-1">
+                  {selectedToken?.symbol}
+                </h5>
 
                 <ChevronDown
                   className="mx-1 my-1 "

@@ -12,108 +12,11 @@ export default function Swap(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShow2, setModalShow2] = React.useState(false);
 
+  console.log(props.tokenList["0xEAC3ce292F95d779732e7a26c95c57A742cf5119"]);
+
   useEffect(() => {
     console.log(props.walletAddress);
   }, [props.walletAddress]);
-
-  const tokenDetails = [
-    {
-      name: "ETH",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "BTX",
-      icon: eth,
-    },
-    {
-      name: "BXG",
-      icon: eth,
-    },
-    {
-      name: "WETH",
-      icon: eth,
-    },
-    {
-      name: "ZAR",
-      icon: eth,
-    },
-    {
-      name: "USD",
-      icon: eth,
-    },
-    {
-      name: "XTG",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-  ];
 
   const swap = () => {
     //swap logic
@@ -123,8 +26,22 @@ export default function Swap(props) {
     setSelectedToken2(temp);
   };
 
-  const [selectedToken1, setSelectedToken1] = React.useState(tokenDetails[0]);
-  const [selectedToken2, setSelectedToken2] = React.useState(tokenDetails[2]);
+  const [selectedToken1, setSelectedToken1] = React.useState({
+    symbol: "NMR",
+    name: "Numeraire",
+    address: "0xEAC3ce292F95d779732e7a26c95c57A742cf5119",
+    decimals: 18,
+    logoURI: eth,
+    tags: ["tokens"],
+  });
+  const [selectedToken2, setSelectedToken2] = React.useState({
+    symbol: "OWL",
+    name: "OWL Token",
+    address: "0xEAC3ce292F95d779732e7a26c95c57A742cf5119",
+    decimals: 18,
+    logoURI: eth,
+    tags: ["tokens"],
+  });
 
   const [slippage, setSlippage] = React.useState(2.5);
 
@@ -203,7 +120,7 @@ export default function Swap(props) {
           <SwapInput
             setModalShow={setModalShow}
             setSelectedToken={setSelectedToken1}
-            tokenDetails={tokenDetails}
+            tokenDetails={props.tokenList}
             modalshow={modalShow}
             selectedToken={selectedToken1}
             backgroundColor={"#06070a"}
@@ -214,7 +131,7 @@ export default function Swap(props) {
           <SwapInput
             selectedToken={selectedToken2}
             setSelectedToken={setSelectedToken2}
-            tokenDetails={tokenDetails}
+            tokenDetails={props.tokenList}
             modalshow={modalShow2}
             setModalShow={setModalShow2}
             isBordered={true}

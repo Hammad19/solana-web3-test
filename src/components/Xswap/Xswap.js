@@ -21,104 +21,22 @@ export default function Xswap(props) {
     console.log(props.walletAddress);
   }, [props.walletAddress]);
 
-  const tokenDetails = [
-    {
-      name: "ETH",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "BTX",
-      icon: eth,
-    },
-    {
-      name: "BXG",
-      icon: eth,
-    },
-    {
-      name: "WETH",
-      icon: eth,
-    },
-    {
-      name: "ZAR",
-      icon: eth,
-    },
-    {
-      name: "USD",
-      icon: eth,
-    },
-    {
-      name: "XTG",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-    {
-      name: "MUD",
-      icon: eth,
-    },
-  ];
+  const [selectedToken1, setSelectedToken1] = React.useState({
+    symbol: "NMR",
+    name: "Numeraire",
+    address: "0xEAC3ce292F95d779732e7a26c95c57A742cf5119",
+    decimals: 18,
+    logoURI: eth,
+    tags: ["tokens"],
+  });
+  const [selectedToken2, setSelectedToken2] = React.useState({
+    symbol: "OWL",
+    name: "OWL Token",
+    address: "0xEAC3ce292F95d779732e7a26c95c57A742cf5119",
+    decimals: 18,
+    logoURI: eth,
+    tags: ["tokens"],
+  });
 
   const swap = () => {
     //swap logic
@@ -127,9 +45,6 @@ export default function Xswap(props) {
     setSelectedToken1(selectedToken2);
     setSelectedToken2(temp);
   };
-
-  const [selectedToken1, setSelectedToken1] = React.useState(tokenDetails[0]);
-  const [selectedToken2, setSelectedToken2] = React.useState(tokenDetails[2]);
 
   const [slippage, setSlippage] = React.useState(2.5);
 
@@ -211,7 +126,7 @@ export default function Xswap(props) {
         <XswapInput
           setModalShow={setModalShow}
           setSelectedToken={setSelectedToken1}
-          tokenDetails={tokenDetails}
+          tokenDetails={props.tokenList}
           modalshow={modalShow}
           selectedToken={selectedToken1}
           backgroundColor={"#1e293b"}
@@ -222,7 +137,7 @@ export default function Xswap(props) {
         <XswapInput
           selectedToken={selectedToken2}
           setSelectedToken={setSelectedToken2}
-          tokenDetails={tokenDetails}
+          tokenDetails={props.tokenList}
           modalshow={modalShow2}
           backgroundColor={"#1e293b"}
           setModalShow={setModalShow2}
