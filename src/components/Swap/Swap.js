@@ -12,12 +12,6 @@ export default function Swap(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShow2, setModalShow2] = React.useState(false);
 
-  console.log(props.tokenList["0xEAC3ce292F95d779732e7a26c95c57A742cf5119"]);
-
-  useEffect(() => {
-    console.log(props.walletAddress);
-  }, [props.walletAddress]);
-
   const swap = () => {
     //swap logic
 

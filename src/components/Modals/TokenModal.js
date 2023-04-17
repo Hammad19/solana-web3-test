@@ -10,9 +10,12 @@ function TokenModal(props) {
     props.tokenDetails
   );
 
+  console.log("Opened");
+
+  //whenever the tokenmodal opens reset the filter
   useEffect(() => {
     setFilteredTokens(props.tokenDetails);
-  }, []);
+  }, [props.show]);
 
   return (
     <Modal

@@ -39,8 +39,6 @@ export default function Xswap(props) {
   });
 
   const swap = () => {
-    //swap logic
-
     const temp = selectedToken1;
     setSelectedToken1(selectedToken2);
     setSelectedToken2(temp);

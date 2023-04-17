@@ -13,35 +13,7 @@ import Xswap from "./components/Xswap/Xswap";
 
 function App() {
   const [walletAddress, setWalletAddress] = useState(null);
-  const [tokenList, setTokenList] = useState({
-    "0xEAC3ce292F95d779732e7a26c95c57A742cf5119": {
-      symbol: "BTC++",
-      name: "PieDAO BTC++",
-      decimals: 18,
-      address: "0xEAC3ce292F95d779732e7a26c95c57A742cf5119",
-      logoURI:
-        "https://tokens.1inch.io/0xEAC3ce292F95d779732e7a26c95c57A742cf5119.png",
-      tags: ["tokens", "PEG:BTC"],
-    },
-    "0x04fa0d235c4abf4bcf4787af4cf447de572ef828": {
-      symbol: "UMA",
-      name: "UMA Voting Token v1",
-      decimals: 18,
-      address: "0x04fa0d235c4abf4bcf4787af4cf447de572ef828",
-      logoURI:
-        "https://tokens.1inch.io/0x04fa0d235c4abf4bcf4787af4cf447de572ef828.png",
-      tags: ["tokens"],
-    },
-    "0x08d967bb0134f2d07f7cfb6e246680c53927dd30": {
-      symbol: "MATH",
-      name: "MATH Token",
-      address: "0x08d967bb0134f2d07f7cfb6e246680c53927dd30",
-      decimals: 18,
-      logoURI:
-        "https://tokens.1inch.io/0x08d967bb0134f2d07f7cfb6e246680c53927dd30.png",
-      tags: ["tokens"],
-    },
-  });
+  const [tokenList, setTokenList] = useState([]);
 
   //make function to fetch token Data
 
