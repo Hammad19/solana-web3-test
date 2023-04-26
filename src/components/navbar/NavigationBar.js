@@ -5,16 +5,35 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/logos/grebe-logo.png";
-import etherium from "../../assets/Icons/ethereum.svg";
-import bsc from "../../assets/Icons/bsc_2.svg";
-import polygon from "../../assets/Icons/polygon_1.svg";
-import optimism from "../../assets/Icons/optimism.svg";
-import arbitrum from "../../assets/Icons/arbitrum.svg";
-import gnosis from "../../assets/Icons/gnosis.svg";
-import avalanche from "../../assets/Icons/avalanche.svg";
-import phantom from "../../assets/Icons/fantom.svg";
-import klaytin from "../../assets/Icons/klaytn.svg";
-import aurora from "../../assets/Icons/aurora.svg";
+import etheriumicon from "../../assets/Icons/ethereum.svg";
+import bscicon from "../../assets/Icons/bsc_2.svg";
+import polygonicon from "../../assets/Icons/polygon_1.svg";
+import optimismicon from "../../assets/Icons/optimism.svg";
+import arbitrumicon from "../../assets/Icons/arbitrum.svg";
+import gnosisicon from "../../assets/Icons/gnosis.svg";
+import avalancheicon from "../../assets/Icons/avalanche.svg";
+import phantomicon from "../../assets/Icons/fantom.svg";
+import klaytinicon from "../../assets/Icons/klaytn.svg";
+import auroraicon from "../../assets/Icons/aurora.svg";
+import {
+  EthereumClient,
+  w3mConnectors,
+  w3mProvider,
+} from "@web3modal/ethereum";
+import { Web3Button, Web3Modal, Web3NetworkSwitch } from "@web3modal/react";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
+import {
+  arbitrum,
+  mainnet,
+  polygon,
+  avalanche,
+  optimism,
+  gnosis,
+  klaytn,
+  aurora,
+  fantom,
+  bsc,
+} from "wagmi/chains";
 
 import Select from "react-select";
 
@@ -27,13 +46,34 @@ import React, { useEffect, useState } from "react"; // Default styles that can b
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 function NavigationBar(props) {
+  const chains = [
+    arbitrum,
+    mainnet,
+    polygon,
+    avalanche,
+    optimism,
+    gnosis,
+    klaytn,
+    aurora,
+    fantom,
+    bsc,
+  ];
+  const projectId = "YOUR_PROJECT_ID";
+
+  const { provider } = configureChains(chains, [w3mProvider({ projectId })]);
+  const wagmiClient = createClient({
+    autoConnect: true,
+    connectors: w3mConnectors({ projectId, version: 1, chains }),
+    provider,
+  });
+  const ethereumClient = new EthereumClient(wagmiClient, chains);
   const data = [
     {
       value: 1,
       text: "Etherium",
       icon: (
         <img
-          src={etherium}
+          src={etheriumicon}
           alt="eth"
           style={{
             width: "20px",
@@ -49,7 +89,7 @@ function NavigationBar(props) {
       text: "BNB Chain",
       icon: (
         <img
-          src={bsc}
+          src={bscicon}
           alt="eth"
           style={{
             width: "20px",
@@ -65,7 +105,7 @@ function NavigationBar(props) {
       text: "Polygon",
       icon: (
         <img
-          src={polygon}
+          src={polygonicon}
           alt="eth"
           style={{
             width: "20px",
@@ -81,7 +121,7 @@ function NavigationBar(props) {
       text: "Optimism",
       icon: (
         <img
-          src={optimism}
+          src={optimismicon}
           alt="eth"
           style={{
             width: "20px",
@@ -98,7 +138,7 @@ function NavigationBar(props) {
       text: "Arbitrum",
       icon: (
         <img
-          src={arbitrum}
+          src={arbitrumicon}
           alt="eth"
           style={{
             width: "20px",
@@ -115,7 +155,7 @@ function NavigationBar(props) {
       text: "Gnosis",
       icon: (
         <img
-          src={gnosis}
+          src={gnosisicon}
           alt="eth"
           style={{
             width: "20px",
@@ -132,7 +172,7 @@ function NavigationBar(props) {
       text: "Avalanche",
       icon: (
         <img
-          src={avalanche}
+          src={avalancheicon}
           alt="eth"
           style={{
             width: "20px",
@@ -149,7 +189,7 @@ function NavigationBar(props) {
       text: "Phantom",
       icon: (
         <img
-          src={phantom}
+          src={phantomicon}
           alt="eth"
           style={{
             width: "20px",
@@ -166,7 +206,7 @@ function NavigationBar(props) {
       text: "Klaytin",
       icon: (
         <img
-          src={klaytin}
+          src={klaytinicon}
           alt="eth"
           style={{
             width: "20px",
@@ -183,7 +223,7 @@ function NavigationBar(props) {
       text: "Aurora",
       icon: (
         <img
-          src={aurora}
+          src={auroraicon}
           alt="eth"
           style={{
             width: "20px",
@@ -306,86 +346,15 @@ function NavigationBar(props) {
             })}
           </Nav>
 
-          <Nav
-            className="mx-2"
-            style={
-              {
-                //overflow style
-              }
-            }>
-            <Select
-              styles={{
-                //change background color of dropdown
-                menu: (provided, state) => ({
-                  ...provided,
-                  background: "rgba(5, 24, 57, 255)",
-                  color: "white",
-                }),
-
-                //change background of selected option
-                option: (provided, state) => ({
-                  ...provided,
-                  background: state.isSelected
-                    ? "rgba(5, 24, 57, 255)"
-                    : "rgba(5, 24, 57, 255)",
-                  color: "white",
-                }),
-
-                //change background of whole dropdown
-                control: (provided, state) => ({
-                  ...provided,
-
-                  color: "white",
-                  borderRadius: "15px",
-                  background: "#202c46",
-                }),
-
-                //change color of placeholder
-
-                placeholder: (provided, state) => ({
-                  ...provided,
-                  color: "white",
-                }),
-
-                //change color of dropdown indicator
-                dropdownIndicator: (provided, state) => ({
-                  ...provided,
-                  color: "white",
-                }),
-
-                //change color of selected option
-                singleValue: (provided, state) => ({
-                  ...provided,
-                  color: "white",
-                }),
-
-                //remove border of indicator
-                indicatorSeparator: (provided, state) => ({
-                  ...provided,
-                  display: "none",
-                }),
-
-                //set font size of selected option
-                valueContainer: (provided, state) => ({
-                  ...provided,
-                  fontSize: "18px",
-                }),
-              }}
-              placeholder="Select Option"
-              value={selectedOption}
-              options={data}
-              onChange={handleChange}
-              getOptionLabel={(e) => (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  {e.icon}
-                  <span style={{ marginLeft: 5 }}>{e.text}</span>
-                </div>
-              )}
-            />
+          <Nav className="mx-2">
+            <Web3NetworkSwitch />
           </Nav>
           <Nav>
-            {!props.walletAddress && renderNotConnectedContainer()}
-            {props.walletAddress && renderConnectedContainer()}
+            <WagmiConfig client={wagmiClient}>
+              <Web3Button />
+            </WagmiConfig>
+
+            <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
           </Nav>
         </Navbar.Collapse>
       </Container>
