@@ -12,6 +12,9 @@ export default function Swap(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShow2, setModalShow2] = React.useState(false);
 
+  const [token1InputValue, setToken1InputValue] = React.useState(0);
+  const [token2InputValue, setToken2InputValue] = React.useState(0);
+
   const swap = () => {
     //swap logic
 
@@ -42,6 +45,55 @@ export default function Swap(props) {
   const handleSlippage = (e) => {
     setSlippage(e.target.value);
   };
+
+  function convertToMinimalUnits(amount, decimalPlaces) {
+    const decimalFactor = 10 ** decimalPlaces;
+    const minimalUnits = amount * decimalFactor;
+    return minimalUnits;
+  }
+
+  function convertFromMinimalUnits(minimalUnits, decimalPlaces) {
+    const decimalFactor = 10 ** decimalPlaces;
+    const amount = minimalUnits / decimalFactor;
+    return amount;
+  }
+  useEffect(() => {
+    const fetchQuote = async () => {
+      const fromTokenAddress = selectedToken1.address;
+      const toTokenAddress = selectedToken2.address;
+
+      const amount = convertToMinimalUnits(
+        token1InputValue,
+        selectedToken1.decimals
+      );
+      console.log(amount);
+
+      const url = `https://api.1inch.io/v5.0/1/quote?fromTokenAddress=${fromTokenAddress}&toTokenAddress=${toTokenAddress}&amount=${amount}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+
+        const quote = convertFromMinimalUnits(
+          data.toTokenAmount,
+          selectedToken2.decimals
+        );
+        console.log(quote);
+        setToken2InputValue(quote);
+      } catch (error) {
+        console.error("Error fetching quote:", error);
+      }
+    };
+
+    fetchQuote();
+  }, [
+    token1InputValue,
+    selectedToken1.address,
+    selectedToken2.address,
+    selectedToken1.decimals,
+    selectedToken2.decimals,
+  ]);
 
   const settingsContent = (
     <>
@@ -120,6 +172,8 @@ export default function Swap(props) {
             backgroundColor={"#06070a"}
             isBordered={false}
             inputHeader={"You Sell"}
+            tokenValue={token1InputValue}
+            setTokenValue={setToken1InputValue}
           />
 
           <SwapInput
@@ -130,6 +184,8 @@ export default function Swap(props) {
             setModalShow={setModalShow2}
             isBordered={true}
             inputHeader={"You Buy"}
+            tokenValue={token2InputValue}
+            setTokenValue={setToken2InputValue}
           />
         </div>
 

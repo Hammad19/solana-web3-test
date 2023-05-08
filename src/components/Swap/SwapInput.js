@@ -11,6 +11,8 @@ export default function SwapInput({
   backgroundColor,
   isbordered,
   inputHeader,
+  tokenValue,
+  setTokenValue,
 }) {
   return (
     <>
@@ -90,6 +92,10 @@ export default function SwapInput({
                 className="col-12"
                 type="number input-data"
                 placeholder="0"
+                value={tokenValue}
+                onChange={(e) => {
+                  setTokenValue(e.target.value);
+                }}
                 style={{
                   marginTop: "18px",
                   textAlign: "right",

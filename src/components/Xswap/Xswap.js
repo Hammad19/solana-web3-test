@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import settings from "../../../src/assets/Icons/settings.png";
 import eth from "../../../src/assets/Icons/eth.png";
 import { Input, Popover, Radio, Modal, message } from "antd";
@@ -13,9 +13,14 @@ import TokenModal from "../Modals/TokenModal";
 import arrow from "../../../src/assets/Icons/swap.png";
 import XswapInput from "./XswapInput";
 import ChainConverter from "./ChainConverter";
+import { ethers } from "ethers";
+import { parseEther } from "ethers/lib/utils.js";
 export default function Xswap(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShow2, setModalShow2] = React.useState(false);
+
+  const [token1InputValue, setToken1InputValue] = useState(0);
+  const [token2InputValue, setToken2InputValue] = useState(0);
 
   useEffect(() => {
     console.log(props.walletAddress);
@@ -49,6 +54,55 @@ export default function Xswap(props) {
   const handleSlippage = (e) => {
     setSlippage(e.target.value);
   };
+
+  function convertToMinimalUnits(amount, decimalPlaces) {
+    const decimalFactor = 10 ** decimalPlaces;
+    const minimalUnits = amount * decimalFactor;
+    return minimalUnits;
+  }
+
+  function convertFromMinimalUnits(minimalUnits, decimalPlaces) {
+    const decimalFactor = 10 ** decimalPlaces;
+    const amount = minimalUnits / decimalFactor;
+    return amount;
+  }
+  useEffect(() => {
+    const fetchQuote = async () => {
+      const fromTokenAddress = selectedToken1.address;
+      const toTokenAddress = selectedToken2.address;
+
+      const amount = convertToMinimalUnits(
+        token1InputValue,
+        selectedToken1.decimals
+      );
+      console.log(amount);
+
+      const url = `https://api.1inch.io/v5.0/1/quote?fromTokenAddress=${fromTokenAddress}&toTokenAddress=${toTokenAddress}&amount=${amount}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+
+        const quote = convertFromMinimalUnits(
+          data.toTokenAmount,
+          selectedToken2.decimals
+        );
+        console.log(quote);
+        setToken2InputValue(quote);
+      } catch (error) {
+        console.error("Error fetching quote:", error);
+      }
+    };
+
+    fetchQuote();
+  }, [
+    token1InputValue,
+    selectedToken1.address,
+    selectedToken2.address,
+    selectedToken1.decimals,
+    selectedToken2.decimals,
+  ]);
 
   const settingsContent = (
     <>
@@ -130,6 +184,8 @@ export default function Xswap(props) {
           backgroundColor={"#1e293b"}
           isBordered={false}
           inputHeader={"You Sell"}
+          tokenValue={token1InputValue}
+          setTokenValue={setToken1InputValue}
         />
 
         <XswapInput
@@ -141,6 +197,8 @@ export default function Xswap(props) {
           setModalShow={setModalShow2}
           isBordered={true}
           inputHeader={"You Buy"}
+          tokenValue={token2InputValue}
+          setTokenValue={setToken2InputValue}
         />
       </div>
 
