@@ -8,7 +8,9 @@ import { Button } from "react-bootstrap";
 import TokenModal from "../Modals/TokenModal";
 import arrow from "../../../src/assets/Icons/swap.png";
 import SwapInput from "./SwapInput";
+import { useChainId } from "wagmi";
 export default function Swap(props) {
+  const chainId = useChainId();
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShow2, setModalShow2] = React.useState(false);
 
@@ -68,7 +70,7 @@ export default function Swap(props) {
       );
       console.log(amount);
 
-      const url = `https://api.1inch.io/v5.0/1/quote?fromTokenAddress=${fromTokenAddress}&toTokenAddress=${toTokenAddress}&amount=${amount}`;
+      const url = `https://api.1inch.io/v5.0/${chainId}/quote?fromTokenAddress=${fromTokenAddress}&toTokenAddress=${toTokenAddress}&amount=${amount}`;
 
       try {
         const response = await fetch(url);

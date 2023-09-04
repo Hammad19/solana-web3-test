@@ -18,12 +18,6 @@ function App() {
   //make function to fetch token Data
 
   useEffect(() => {
-    fetch("https://api.1inch.io/v5.0/1/tokens")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.tokens);
-        setTokenList(data.tokens);
-      });
     console.log("Hello World");
   }, []);
 
@@ -48,6 +42,7 @@ function App() {
         <NavigationBar
           walletAddress={walletAddress}
           setWalletAddress={setWalletAddress}
+          setTokenList={setTokenList}
           menu={Paths}
         />
         <div
