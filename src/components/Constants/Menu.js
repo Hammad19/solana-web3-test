@@ -1,17 +1,17 @@
 import React from "react";
-import Pool from "../Pool/Pool";
-import Songs from "../Songs/Songs";
-import Swap from "../Swap/Swap";
+
+import TokenBox from "../Tokens/TokenBox";
 
 export const Paths = [
   {
-    title: "Swap",
+    title: "Tokens",
     path: "/",
-    component: <Swap />,
+    component: <TokenBox />,
   },
+
   {
-    title: "Xswap",
-    path: "/xswap",
-    component: <Songs />,
+    title: "NFT Tokens",
+    path: "/",
+    component: <TokenBox />,
   },
 ];
