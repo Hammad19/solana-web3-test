@@ -12,18 +12,6 @@
   opacity: 1; /* Firefox */
 }
 
-.nav-subcontainer {
-  background-color: #1e2633;
-  border-radius: 20px;
-  padding: 10px;
-}
-
-.nav-container-menu {
-  font-size: 20px;
-  font-weight: bold;
-  font-family: sans-serif;
-}
-
 #swapmodalinput-hover:hover {
   background-color: #394353;
 }
@@ -86,128 +74,7 @@
   }
 }
 
-.background-main{
-  background-color: #06070a;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  /* Don't move on scroll */
-  background-attachment: fixed;
-  /* Adjustable background height */
-  height: 100vh;
-  padding: 2rem;
-}
 
-.tokenbox{
-  background: #131924;
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(0px);
-  border: 1px solid transparent;
-  height: 400px;
-  font-family: sans-serif;
-  padding-top: 14px;
-}
-
-#tokenbox-button {
-  width: 90%;
-  height: 50px;
-  border-radius: 10px;
-  font-size: 25px;
-  background-color: #a044fc;
-  border: none;
-}
-
-#connected-container-button {
-  border-color: #a044fc;
-  border-radius: 20px;
-  width: 200px;
-  background-color: transparent;
-}
-
-#tokenbox-copy-button {
-
-  
-  font-size: 15px;
-  background-color: #a044fc;
-  border: none;
-
-
-}
-
-
-.custom-modal {
-  /* Your modal styles */
-}
-
-.custom-modal-body {
-  background: #131823;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-}
-
-.custom-card-header {
-  background: transparent;
-  border: none;
-}
-
-.custom-table-row {
-  background: #131823;
-  border: 0px solid transparent;
-  border-radius: 20px;
-  height: 40px;
-}
-
-.custom-td {
-  /* Your custom td styles */
-}
-
-.custom-h5 {
-  font-size: 13px;
-  margin-left: 5px;
-}
-
-.custom-badge {
-  font-size: 15px;
-  /* Your custom badge styles */
-}
-
-.custom-table {
-  /* Your custom table styles */
-}
-
-#notconnected-button {
-  border-radius: 20px;
-  background-color: #a044fc;
-  border: none;
-  height: 40px;
-  width: 150px;
-}
-
-.tokenbox-heading-4 {
-  color: #f8fdfd;
-  margin-right: 150px;
-}
-
-.main-div-style {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
-}
-
-
-.tokenbox-subdiv {
-  text-align: left;
-  padding-left: 30px;
-}
-
-.tokenbox-subcontainer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
 
 
 
